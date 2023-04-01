@@ -1,0 +1,137 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\title{Differential Equations}
+\author{joeloy}
+\date{September 2022}
+
+\begin{document}
+
+\maketitle
+
+\section{Ordinary Differential Equations}
+
+\subsection{First Order Equations}
+
+\subsubsection{Separation of Variables}
+A first order separable differential equation has the following form
+$$ y' = g(x)h(y) $$
+
+\subsubsection{First Order Linear Equations}
+
+A linear, first order differential equation has the following form 
+
+$$ y' + p(x)y = q(x) $$
+
+For homogeneous 1st order ODEs, q(x) = 0. 
+
+The solution for a first order ODE is the following :
+
+$$ y = e^{-\int{p(x)dx}}\left[\int{q(x) e^{\int{p(x)dx}}dx}\right] $$ 
+$$ y = Ce^{-\int{p(x)dx}} + e^{-\int{p(x)dx}}\int{q(x) e^{\int{p(x)dx}}dx} = y_h + y_p$$
+
+Notice that in the case where the ODE is homogeneous, the particular solution is just 0.
+
+\subsubsection{Variable Substitutions}
+
+If y is missing, then the following substitution is helpful 
+
+$$ y' = p \text{ , }  y'' = \frac{dp}{dx} $$
+
+If x is missing, then the following substitution is helpful
+
+$$ y' = p \text{ , } y'' = p\frac{dp}{dy} $$
+
+If $ y' = f(\frac{y}{x}) $ then the following substitution is helpful
+
+$$ z = \frac{y}{x} \text{ , } \frac{dy}{dx} = z + x\frac{dz}{dx} $$
+
+If $ y' = f(ax + by + c) $ then the following substitution is helpful 
+
+$$ u = ax + by + c $$
+
+Below is a systematic process in which one can classify a first order ODE, determine whether or not it has an analytical solution, and identifying the proper method in which one must resort to in order to get the analytical solution of the ODE. 
+
+\begin{enumerate}
+    \item Determine whether the ODE is linear or nonlinear
+    \item If the ODE is linear, write the equation out in either standard form or separated form
+    \item If equation is not seperable and cannot be rewritten in standard form using algebra, try performing a variable substitution
+    \item Solve resulting standard form equation using the integrating factors method or the variation of parameters method (both are valid and give the same answer)
+    
+\end{enumerate}
+
+
+\subsection{Second Order Equations}
+
+The standard form of a generalized 2nd order ODE is 
+$$ y'' + P(x)y' + Q(x)y = R(x) $$
+Notice that the coefficient in front of the highest order term is 1. 
+
+\subsubsection{Homogeneous Equation with Constant Coefficients}
+
+A homogeneous equation is an ODE that is equal to zero, ie $$y'' +P(x)y' + Q(x)y = 0$$
+
+In order to solve a homogeneous 2nd order ODE with constant coefficients, we guess the solution $y = e^{mx}$, and solve for the characteristic polynomial.
+
+
+\subsubsection{Method of Undetermined Coefficients}
+
+\subsubsection{Method of Variation of Parameters}
+In order to find the particular solution of a 2nd order ODE using the variation of parameters method, one must first go ahead and solve for the homogeneous solution. After the general solutions $y_1$ and $y_2$ are found, one can reconstruct the particular solution with the following method. First, one should ensure that the ODE is in standard form. Next, the Wronskian should be computed. Recall that the Wronskian for a 2nd order ODE is defined as $$W(y_1, y_2) = y_1y_2' - y_2y_1'$$
+
+After the Wronskian is computed, the particular solution can be obtained from the following expressions. 
+
+$$y_p = v_1y_1 + v_2y_2$$
+Where
+$$ v_1 = \int{\frac{-y_2R(x)}{W(y_1,y_2)}} $$
+$$ v_2 = \int{\frac{y_1R(x)}{W(y_1,y_2)}} $$
+
+\subsection{Higher Order ODEs and Systems of 1st order ODEs}
+
+The order of an ODE is determined by the highest derivative term. For example, the following ODE has order 3
+$$ y^{(3)} + 4xy'' + 8xy' + 6y = e^xlog(x)  $$ 
+
+A system of 1st order ODEs has the following form 
+
+$$ \begin{Bmatrix}
+\frac{dx}{dt}= a_1x + b_1y\\
+\frac{dy}{dt}= a_2x + b_2y
+\end{Bmatrix}
+$$ 
+
+We know that the solution of a first order ODE should be an exponential equation, since the exponential function with base e is unique in the sense that it is the only function that is the derivative of itself up to a constant factor. Thus, if one simply plugs in $Ae^{mt}, Be^{mt}, \text{etc...}$ for each term in the system of equations, ie
+
+$$ \begin{Bmatrix}
+Ame^{mt}= a_1Ae^{mt} + b_1Be^{mt}\\
+Bme^{mt}= a_2Ae^{mt} + b_2Be^{mt}
+\end{Bmatrix}
+$$
+
+one can rewrite the system as a matrix equation of the form
+$$ \begin{vmatrix} 
+a_1 - m & b_1\\
+a_2 & b_2 - m 
+\end{vmatrix} = 0 $$
+We set the determinant of the matrix equation to 0 because we are seeking non trivial solutions, ie functions of x that are not constantly 0, for the system that we are trying to model. When we take the determinant of the matrix, 3 possibilites can arise if the determinant is zero. By solving the resulting quadratic equation in the variable m, we can find the non trivial solutions of the systems of equations. The form of the solution of the system of equations will depend on whether or not the eigenvalues are distinct and whether or not the eigenvalues are real or complex. The process of setting up the system of equations can be summarized as 
+
+\begin{enumerate}
+    \item Plug in the known form of a first order ODE, ie $Ae^{mt}$ for each ODE in the system
+    \item Arrange the equations into matrix form, take the determinant, set the determinant equal to 0,  and verify that a non trivial solution does exist for the system of equations. (ie the determinant should equal 0)
+    \item Determine whether resulting quadratic equation in m has distinct real roots, repeated real roots, or complex conjugate roots. 
+\end{enumerate}
+
+After one models the systems of equations and classifies the properties of the roots, one can go ahead and follow the respective strategies for coming up with solutions to the system on a case by case basis. 
+
+\subsubsection{Two Distinct Real Eigenvalues}
+
+\subsubsection{Two Repeating Eigenvalues}
+
+\subsubsection{Complex Eigenvalues}
+
+
+
+
+
+
+\end{document}
+

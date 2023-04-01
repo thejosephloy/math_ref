@@ -1,0 +1,48 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{Vector Calculus}
+\author{joeloy }
+\date{October 2022}
+
+\begin{document}
+
+\maketitle
+
+\section{Partial Derivatives}
+
+\section{Iterated Integrals}
+
+\section{Vector Fields, Parametric Equations, and Arc Length}
+
+\subsection{Testing if vector field is conservative}
+Suppose we have a vector field
+$$ \bar{F} = <M(x,y,z), N(x,y,z), P(x,y,z> $$
+
+The vector field is conservative if the curl of the vector field is 0
+
+$$\frac{dM}{dy} = \frac{dN}{dx} $$
+$$\frac{dM}{dz} = \frac{dP}{dx} $$
+$$\frac{dN}{dz} = \frac{dP}{dy} $$
+
+\subsection{Finding scalar potential function for conservative vector field}
+$$ \bar{F} = <M(x,y,z), N(x,y,z), P(x,y,z)> = \nabla f = <\frac{df}{dx}, \frac{df}{dy}, \frac{df}{dz}> $$
+ Therefore, we know that 
+ $$ M(x,y,z) = \frac{df}{dx} $$
+ $$ N(x,y,z) = \frac{df}{dy} $$
+ $$ P(x,y,z) = \frac{df}{dz} $$
+
+\section{Line Integrals}
+
+$$ \int_Cf(x,y)ds = \int_a^b f(h(t),g(t))\sqrt{\frac{dx}{dt}^2 + \frac{dy}{dt}^2} $$
+
+$$ \int_C \bar{F} \cdot d\bar{r} = \int_a^b \bar{F}(\bar{r}(t)) \cdot \bar{r}'(t)dt $$
+
+$$ \int_C \nabla f \cdot d\bar{r} = f(\bar{r}(b)) - f(\bar{r}(a))$$
+
+\section{Surface Integrals}
+
+\section{Curl, Gradient, and Divergence}
+
+\end{document}
+

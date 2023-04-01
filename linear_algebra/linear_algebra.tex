@@ -1,0 +1,93 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+
+\title{Linear Algebra ref}
+\author{Joe Loy}
+\date{February 2023}
+
+\begin{document}
+
+\maketitle
+
+\section{Gaussian Elimination}
+
+Fundamental operations of Gaussian Elimination
+\begin{enumerate}
+    \item Row Swaps
+
+    \item Multiply/divide rows by scalar
+
+    \item Add/subtract rows together
+\end{enumerate}
+
+Types of Matrices 
+\begin{enumerate}
+    \item Lower Triangle \\
+
+    \item Upper Triangle \\
+
+    \item Diagonal \\
+\end{enumerate}
+
+
+\section{Solving Linear Systems}
+A system of linear equations can have either 1 solution, no solution, or infinitely many solutions. A square matrix generally has exactly one solution, tall matrices generally have no solutions, and fat matrices generally have infinitely many solutions. For matrices that have a solution, we generally have a particular solution and a null solution. For a matrix with exactly one solution, the only null solution is the zero vector, but for a matrix with infinitely many solutions, the null space will contain at least one more vector than the null vector. \\ 
+
+Symbolically, we can represent the solution to a linear system Ax= b as 
+
+$$Ax_p = b, Ax_n = 0, A(x_p + x_n) = b $$
+
+The steps for solving for the particular solution and null solution are provided below 
+\begin{enumerate}
+    \item Row reduce the matrix A to an upper triangular matrix U. U is said to be in row echelon form
+
+    \item Convert row reduced matrix U into R, a reduced row echelon matrix, by making sure all of the pivots are 1 and all of the entries above pivots are 0.
+
+    \item To solve for the null solution, set $Rx_n = 0$ and solve for each pivot variable in terms of the free variables
+
+    \item To solve for the particular solution, set $Rx_p = d$, set free variables equal to zero, and equations containing the pivot variables.
+    
+\end{enumerate}
+
+
+
+
+\section{Vector Spaces}
+A vector space is a non-empty set of vectors in which the following rules hold for all vectors in the vector space
+
+\begin{enumerate}
+    \item For any vectors x and y, x + y is contained within the vector space
+
+    \item For any scalar c and any vector x, cx is contained in the vector space.
+\end{enumerate}
+In words, this tells us that vector addition and scalar multiplication leave us in the same vector space. The smallest possible vector space is the vector space containing only the zero vector. Each of the two properties of subspaces can be easily verified for the vector space. 
+
+\subsection{Column Space}
+The column space of a matrix A is the set of all linear combinations of the columns of A. For an m x n matrix, it is a subspace of $\textbf{R}^m$
+
+$\textbf{C}(A) = \{ b \in \textbf{R}^m | Ax = b \}$
+
+Generally speaking, in the case where $m > n$, we have more equations than unknowns and there will usually be no solution (except in some limited cases). Conversely, if $m < n$, we will typically have more than one solution. Lastly, if m = n, we expect there to be exactly one solution in most cases. 
+
+\subsection{Null space}
+The null space of an m x n matrix A is the set of all vectors x, such that Ax = 0. The null space is a vector space of $\textbf{R}^n$.
+
+$\textbf{N}(A) = \{x \in \textbf{R}^n | Ax = 0\}$
+
+\section{Linear Independence}
+
+\section{Four Fundamental Spaces}
+
+\section{Orthogonality}
+
+\section{Projections}
+
+\section{Determinants}
+
+\section{Eigenvalues and Eigenvectors}
+
+\section{Positive Semidefinite Matrices}
+
+\section{Toeplitz, Hermitian, and other specila Matrices}
+
+\end{document}

@@ -1,0 +1,382 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+
+\title{Probability Reference}
+\author{Joe Loy}
+\date{February 2023}
+
+\begin{document}
+
+\maketitle
+
+\section{Axioms of Probability and Fundamental Equations}
+S is the sample space, E is the event space. 
+\begin{enumerate}
+    \item Axiom 1 \\ 
+    $$P(S) = 1$$
+    The probability that an event in the sample space occurs must be 1
+    \item Axiom 2 \\
+    $$0 \leq P(E) \leq 1$$
+    An event must have a probability that is between 0 and 1.
+    
+    \item Axiom 3 \\
+    $$P(E) + P(E^C) = 1  $$
+    An event must occur or not occur. The probability of an event occuring is 1 - the probability it does not occur. Similarly, for two disjoint events A and B
+    $$P(A \cup B) = P(A) + P(B)$$
+
+    \item Conditional probability \\
+    $$P(A|B) = \frac{P(A \cap B)}{P(B)} $$
+    The probability of A given B is the probability we observe A and B when B occurs
+
+    \item Independent Events \\ 
+    $$P(AB) = P(A)P(B)$$
+    A and B are independent events if the probability that A and B occur is the same as the probability of A occurring multiplied by the probability that B occurs.
+
+    \item Total Probability \\
+    For disjoint events $A_1,...,A_n$ that form partition of sample space, for any event B
+    $$P(B) = P(A_1 \cap B) + ... + P(A_N \cap B) = P(A_1)P(B|A_1) + ... + P(A_N)P(B|A_N)$$
+
+    \item Bayes Rule \\ 
+    For disjoint events $A_1,...,A_n$ that form partition of sample space, for any event B such that $P(B) > 0$
+    $$P(A_i|B) = \frac{P(A_i)P(B|A_i)}{P(B)} = \frac{P(A_i)P(B|A_i)}{P(A_1)P(B|A_1) + ... + P(A_N)P(B|A_N)}$$
+
+    \item Derived Properties of Probability Laws \\
+    $$A \subset B \to P(A) \leq P(B)$$
+    $$P(A \cup B) = P(A) + P(B) - P(A \cap B)$$
+    $$P(A \cup B) \leq P(A) + P(B)$$
+    $$P(A \cup B \cup C) = P(A) + P(A^C \cap B) + P(A^C \cap B^C \cap C)$$
+\end{enumerate}
+
+\section{Permutations and Combinations}
+Counting out the number of events in a sample space and an event space is a fundamental aspect of determining the probability of an event. In most cases, we are concerned with choosing k objects out of n total objects. In the case where the order of our selections matter, we use permutations in order to count all of the different possibilities. In the case in which the order does not matter, we use combinations in order to count all of the different possibilities.
+\begin{enumerate}
+    \item Permutations
+
+    $$P(n, k) = \frac{n!}{(n - k)!}$$
+    
+    \item Combinations
+    Notice that combinations are very similar to permutations, with the addition of an additional k! term in the denominator. 
+    $$C(n, k) = \frac{n!}{(n-k)!k!} = \frac{P(n,k)}{k!}$$
+\end{enumerate}
+
+\section{Single Variable Random Variables}
+
+\begin{enumerate}
+    \item Probability Mass Function and Probability Density Function \\ 
+    A probability mass function for a random variable X is defined as
+    $$P(X = x_i) = f_X(x_i)$$
+    Where 
+    $$\sum_{x} f_X(x_i) = 1$$
+
+    A probability density function for a random variable X is defined as
+    $$P(a \leq X \leq b) = \int_a^bf_X(x)dx$$
+    Where 
+    $$\int_{\infty}^{\infty}f_X(x)dx = 1$$
+    
+    \item Cumulative Distribution Function
+    For a discrete RV X. the cumulative distribution function is defined as 
+    $$F_X(x) = \sum_{x_j \leq x}f_X(x_j)$$
+    For a continuous RV X. the cumulative distribution function is defined as 
+    $$F_X(x) = \int_{-\infty}^{x}f_X(x)dx$$
+
+    \item Moments of Distribution \\
+    Expectation gives us a sense of the average value of a random variable. \\
+    For a discrete random variable, the expectation is defined as 
+    $$E[X] = \sum_{x = -\infty}^{\infty}xp(x)$$
+    For a continuous random variable, the expectation is defined as 
+    $$E[X] = \int_{-\infty}^{\infty}xp(x)dx$$ \\
+    Variance tells us on average how much the random variable can deviate from its average value. A larger variance implies a larger spread of values for the random variable.
+    For discrete and continuous random variables, the variance is defined as 
+    $$Var(X) = E[(X - E[X])^2] = E[X^2] - (E[X])^2$$
+
+         
+\end{enumerate}
+
+\section{Multi-variable Random Variables}
+
+\begin{enumerate}
+    \item Joint PMF and PDF \\
+    \begin{enumerate}
+        \item 2D case \\
+        The joint PMF of X and Y is defined as 
+        $$p_{X,Y}(x,y) = P(X = x, Y = y)$$
+
+        The joint PDF of X and Y is defined as
+        $$P(a \leq X \leq b,c \leq Y \leq d) = \int_a^b\int_c^df_{X,Y}(x,y)dxdy$$
+        $$\int_{-\infty}^{\infty}\int_{-\infty}^{\infty} f_{X,Y}(x,y)dxdy = 1$$
+        \item 3D Case \\
+        The joint PMF of X, Y, and Z is defined as 
+        $$p_{X,Y,Z}(x,y,z) = P(X = x, Y = y,Z = z)$$
+
+        The joint PDF of X, Y, and Z is defined as
+        $$P(a \leq X \leq b, c \leq Y \leq d, e \leq Z \leq f) = \int_{e}^{f}\int_{c}^{d}\int_{a}^{b}f_{X,Y,Z}(x,y,z)dxdydz$$
+        $$\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}\int_{-\infty}^{\infty} f_{X,Y,Z}(x,y,z)dxdydz = 1 $$
+        
+        \item ND Case \\
+        
+    \end{enumerate}
+    
+    \item Marginal PMF and PDF \\ 
+    \begin{enumerate}
+        \item 2D case \\
+        The marginal PMF of X and Y is defined as
+        $$p_X(x) = \sum_{y}p_{X,Y}(x,y)$$
+        $$p_Y(y) = \sum_{x}p_{X,Y}(x,y)$$
+
+        The marginal PDF of X and Y is defined as 
+        $$f_X(x) = \int_{-\infty}^{\infty}f_{X,Y}(x,y)dy$$
+        $$f_Y(y) = \int_{-\infty}^{\infty}f_{X,Y}(x,y)dx$$
+        \item 3D Case \\
+        The marginal PMF of X, Y, and Z is defined as
+        $$p_X(x) = \sum_{y}\sum_{z}p_{X,Y,Z}(x,y,z)$$
+        $$p_Y(y) = \sum_{x}\sum_{z}p_{X,Y,Z}(x,y,z)$$
+        $$p_Z(z) = \sum_{x}\sum_{y}p_{X,Y,Z}(x,y,z)$$
+        $$p_{X,Y}(x,y) = \sum_{z}p_{X,Y,Z}(x,y,z)$$
+        $$p_{X,Z}(x,z) = \sum_{y}p_{X,Y,Z}(x,y,z)$$
+        $$p_{Y,Z}(y,z) = \sum_{x}p_{X,Y,Z}(x,y,z)$$
+        The marginal PDF of X,Y, and Z is defined as 
+        $$f_X(x) = \int_{-\infty}^{\infty}\int_{-\infty}^{\infty}f_{X,Y,Z}(x,y,z)dydz$$
+        $$f_Y(y) = \int_{-\infty}^{\infty}\int_{-\infty}^{\infty}f_{X,Y,Z}(x,y,z)dxdz$$
+        $$f_Z(z) = \int_{-\infty}^{\infty}\int_{-\infty}^{\infty}f_{X,Y,Z}(x,y,z)dxdy$$
+        $$f_{XY}(x,y) = \int_{-\infty}^{\infty}f_{X,Y,Z}(x,y,z)dz$$
+        $$f_{XZ}(x,z) = \int_{-\infty}^{\infty}f_{X,Y,Z}(x,y,z)dy$$
+        $$f_{YZ}(y,z) = \int_{-\infty}^{\infty}f_{X,Y,Z}(x,y,z)dx$$
+        
+        \item ND Case \\
+        
+    \end{enumerate}
+    
+    \item Joint CDF \\ 
+    For a discrete RVs X and Y. the cumulative distribution function is defined as 
+    $$F_{X,Y}(x,y) = \sum_{y_j \leq y}\sum_{x_j \leq x}f_{X,Y}(x_j,y_j)$$
+    For a continuous RVs X and Y. the cumulative distribution function is defined as 
+    $$F_{X,Y}(x,y) = \int_{-\infty}^{y}\int_{-\infty}^{x}f_{X,Y}(x,y)dxdy$$
+\end{enumerate}
+
+\section{Discrete Random Variables}
+
+\begin{enumerate}
+    \item Bernoulli Random Variable \\
+    $$p_x(k = 1) = p $$
+    $$E[X] = p$$
+    $$Var[X] = p - p^2 = p(1 - p)$$
+    
+    \item Binomial Random Variable \\
+    The PMF of a Binomial RV is 
+    $$p_x(k) = {n \choose k}p^k(1-p)^{n-k}$$
+    $$E[X] = np$$
+    $$Var[X] = np(1-p)$$
+    
+    \item Geometric Random Variable \\
+    $$p_x(k) = (1 - p)^{k-1}p$$
+    $$E[X] = \frac{1}{p}$$
+    $$Var[X] = \frac{1 - p}{p^2}$$
+    
+    \item Poisson Random Variable \\
+    The PMF of a Poisson Random Variable is 
+    $$p_x(k) = e^-\lambda\frac{\lambda^k}{k!}$$
+    $$E[X] = \lambda$$
+    $$Var[X] = \lambda$$
+    
+    \item Discrete Uniform Random Variable \\ 
+    $$p_x(k) = \frac{1}{b-a} \text{  for } a \leq k \leq b$$
+    $$E[X] = \frac{a+b}{2}$$
+    $$Var[X] = \frac{(b-a)(b-a+2}{12}$$
+\end{enumerate}
+
+\section{Continuous Random Variables}
+
+\begin{enumerate}
+    \item Normal Random Variable \\
+    $$p_x(k) = \frac{1}{\sqrt{2\pi\sigma}}e^{\frac{-(x - \mu)^2}{2\sigma^2}}$$
+    $$E[X] = \mu$$
+    $$Var[X] = \sigma^2$$
+    \item Exponential Random Variable \\
+    $$p_x(k) = \lambda e^{-\lambda k} \text{ for } k \ge 0$$
+    $$E[X] = \frac{1}{\lambda}$$
+    $$Var[X] = \frac{1}{\lambda^2}$$
+    \item Continuous Uniform Random Variable \\
+    $$p_x(k) = \frac{1}{b-a} \text{  for } a \leq k \leq b$$
+    $$E[X] = \frac{a+b}{2}$$
+    $$Var[X] = \frac{(b-a)^2}{12}$$
+\end{enumerate}
+
+\section{Approximating Random Variables with other Random Variables}
+
+\subsection{Poisson Approximation of Binomial}
+Recall that for a poisson distribution, $\lambda$ is the number of times that we can expect an event to occur in a fixed time interval. For large n and small p, we can set $\lambda = np$ and use the Poisson distribution to approximate the binomial distribution. A rule of thumb is that if n > 20 and np < 5 or nq < 5, then the Poisson serves as a good approximation to the binomial. Recall that the pdf of a binomial random variable is
+$$p_x(k) = {n \choose k}p^k(1-p)^{n-k}$$
+and the pdf of a Poisson random variable is 
+$$p_x(k) = e^-\lambda\frac{\lambda^k}{k!}$$
+When approximating the binomial using a Poisson random variable, we set $\lambda = np$ and plug np into the pdf of the Poisson random variable.
+
+
+\subsection{Normal Approximation of Binomial}
+Recall that for a binomial distribution, n is the number of trials, p is the probability of success, and 1 - p = q is the probability of failure. A rule of thumb tells us that for np > 5 and nq > 5, the normal distribution serves as a good approximation for the binomial distribution. Recall that the PDF of the binomial distribution is
+$$p_x(k) = {n \choose k}p^k(1-p)^{n-k}$$
+and that the PMF of a normal distribution is
+$$p_x(k) = \frac{1}{\sqrt{2\pi\sigma}}e^{\frac{-(x - \mu)^2}{2\sigma^2}}$$
+When using a normal distribution to approximate the binomial distribution, we let $\mu = np$ and plug np into the PDF/CDF of the normal distribution.
+
+
+
+
+\section{Properties of Random Variables}
+
+\subsection{Expectation}
+
+The expectation of a random variable X is defined as  
+$$E[X] = \sum_{x = -\infty}^{\infty}xp(x)$$ 
+$$E[X] = \int_{-\infty}^{\infty}xp(x)dx$$ \\
+for the discrete and continuous cases, respectively. \\
+The expectation of a random variable lets us know what value, on average, the random variable takes on. 
+\subsubsection{Properties of Expectation}
+\begin{enumerate}
+    \item Linearity \\
+    $$E[aX +bY +c] = aE[X] + bE[Y] + c$$
+    
+    \item Law of Unconscious statistician \\
+    $$E[g(X)] = \sum_{-\infty}^{\infty}g(X)p(x)$$ 
+    $$E[g(X)] = \int_{-\infty}^{\infty}g(X)p(x)dx$$ 
+    for discrete and continuous random variables, respectively.
+    For the Joint Distribution of variables X and Y
+    $$E[g(X,Y)] = \sum_x\sum_yg(x,y)p_{X,Y}(x,y)$$
+
+    \item Conditional Expectation \\
+    For discrete RVs X and Y 
+    $$E[X | Y = y_i] = \sum_{j = -\infty}^{\infty} xf_{XY}(x_j, y_i)$$
+    For continuous RVs X and Y
+    $$E[X | Y = y_i] = \int_{-\infty}^{\infty} xf_{XY}(x, y_i) dx$$
+
+    \item Law of iterated expectations \\
+    For RVs X and Y, the law of iterated expectations tells us that the expectation of the expectation of X given Y is the same as the expectation of X.
+    $$E[E[X|Y]] = E[X]$$
+
+\end{enumerate}
+
+\subsection{Variance}
+The variance of a random variable lets us know, on average, how much a random variable deviates from its expected value. 
+\subsubsection{Properties of Variance}
+\begin{enumerate}
+    \item Variance of linear function of random variable Y = aX + b \\
+    $$Var(aX + b) = a^2Var(X)$$
+
+    \item Law of total variance \\ 
+    For RVs X and Y, the law of total variance tells us that the variance of X is equal to the sum of the expectation of the variance of X given Y and the variance of the expectation of X given Y.
+    $$Var[X] = E[Var[X|Y] + Var[E[X|Y]]$$ 
+
+    \item Variance of sum of RVs \\
+
+    $$var[X + Y] = var[X] + var[Y] + 2cov[X,Y]$$
+    
+\end{enumerate}
+
+\subsection{Covariance}
+The covariance between two random variables X and Y is defined as 
+$$cov[X, Y] = E[(X - E[X])(Y - E[Y])]$$
+
+An alternative expression is 
+$$cov[X, Y] = E[XY] - E[X]E[Y]$$
+
+\subsection{Correlation}
+
+$$\rho[X, Y] = \frac{cov[X, Y]}{\sqrt{var[X]var[Y]}}$$
+
+$$-1 \leq \rho[X, Y] \leq 1$$
+
+\subsection{Sums of Random Variables}
+
+Let Y be a sum of n random variables. The sum of two random variables is another random variable. Therefore, Y must also be a random variable
+$$Y = X_1 + X_2 + ... + X_n$$
+
+The sample mean of a sequence of random variables is defined as 
+$$M_n = \frac{X_1 + X_2 + ... + X_n}{n}$$
+
+
+
+\subsection{Moment Generating Functions}
+A moment generating is the inverse fourier transform of a pdf or pmf. The moment generating function lets us determine the expectation, variance, and other moments of the distribution. The moment generating function is defined as 
+$$M_X(s) = E[e^{sX}]$$
+For a discrete RV
+$$M(s) = \sum_{x}e^{sx}p_X(x)$$
+For a continuous RV
+$$M(s) = \int_{-\infty}^{\infty}e^{sx}f_X(x)dx$$
+
+\begin{center}
+\begin{tabular}{||c c c||} 
+ \hline
+ RV & PDF/PMF & MGF \\ [0.5ex] 
+ \hline\hline
+ Bernoulli(p) & $p_X(k) = p$ & $M_X(s) = 1 - p + pe^s$ \\ 
+ \hline
+ Binomial(n,p) & $p_X(k) = {n \choose k} p^k(1-p)^{n-k}$ & $M_X(s) = (1 - p + pe^s)^n$ \\
+ \hline
+ Geometric(p) & $p_X(k) = p(1-p)^{k-1}$ & $M_X(s) = \frac{pe^s}{1 - (1-p)e^s}$ \\
+ \hline
+ Poisson($\lambda$) & $p_X(k) = \frac{e^{-\lambda}\lambda^k}{k!}$ & $M_X(s) = e^{\lambda(e^s - 1)}$ \\
+ \hline
+ Discrete Uniform(a,b) & $p_X(k) = \frac{1}{b-a+1}$ & $M_X(s) = \frac{e^{sa}(e^{s(b-a+1)} - 1)}{(b-a+1)(e^s-1)}$ \\
+ \hline
+ Continuous Uniform(a,b) & $p_X(k) = \frac{1}{b-a}$ & $M_X(s) = \frac{e^{sb} - e^{sa}}{s(b-a)}$ \\
+ \hline
+ Exponential($\lambda$) & $\lambda e^{-\lambda x}$ & $M_X(s) = \frac{\lambda}{\lambda - s}, s < \lambda$ \\
+ \hline
+ Normal($\mu, \sigma$)& $\frac{1}{\sqrt{2\pi}\sigma} e^{\frac{-(x - \mu)^2)}{2\sigma^2}}$ & $M_X(s) = e^{\frac{\sigma^2s^2}{2} + \mu s}$ \\ [1ex] 
+ \hline
+\end{tabular}
+\end{center}
+
+\section{Limit Theorems}
+The Limit Theorems can help us deduce some properties of sums / sequences of random variables in limiting cases.
+
+Some useful quantities to take note of when solving problems using the major inequalities of probability 
+
+$$\sigma_n = \frac{\sigma}{\sqrt{n}}$$
+
+\begin{enumerate}
+    \item Markov Inequality \\
+    The Markov Inequality states that the probability a non negative random variable is greater than some value, a, must be less than or equal to the expectation of the random variable divided by a.
+
+    $$P(X \geq a) \leq \frac{E[X]}{a}$$
+
+    The Markov Inequality gives rather conservative, loose bounds on a random variable.
+    \item Chebyshev Inequality \\
+    The Chebyshev Inequality states that the probability that a random variable deviates from its mean by a value of c must be less than the variance of the random variable divided by the c squared. 
+
+    $$P(|X - \mu| \geq c) \leq \frac{\sigma^2}{c^2}$$
+    
+    $$P(|X - \mu| \geq k\sigma) \leq \frac{1}{k^2}$$
+
+    $$P(|M_n - \mu| \geq \epsilon) \leq \frac{\sigma^2}{n\epsilon^2} $$
+
+    The Chebyshev inequality gives slightly tighter bounds than the Markov Inequality. Notice that the Chebyshev inequality uses both mean and variance in order to give a bound. 
+    \item Weak Law of Large Numbers \\
+    The weak law of large numbers states that as we take more samples of IID random variables, the sample mean converges towards the expectation of the random variable. 
+    $$P(|M_n - \mu| \geq \epsilon) \rightarrow 0, n \rightarrow \infty$$
+    \item Convergence in Probability \\
+    If $Y_1, Y_2, ... Y_N$ is a sequence of random variables, then $Y_N$ converges to a in probability if for every $\epsilon > 0$, we have
+    
+    $$\lim_{n\to \infty} P(|Y_n - a| \geq \epsilon) = 0$$
+
+    Thus, as we take a larger and larger sequence of random variables, the sequence should converge to the true mean with sufficiently large values of n. 
+    
+    \item Convergence with Probability 1 \\
+    Let $M_n = \frac{X_1 + X_2 ... + X_n}{n}$, where each $X_i$ is an independent, identically distributed random variables. Then, the sequence of sample means converges to the true mean with probability 1 for sufficiently large values of n.
+    
+    $$P(\lim_{n\to\infty}Y_n = c) = 1$$
+    
+    \item Central Limit Theorem \\
+    The central limit theorem states that a sum of n independent, identically distributed random variables with finite variance will converge to a normal distribution for sufficiently large values of n. 
+    
+    $$Z_n = \frac{X_1 + X_2 + ... + X_n - n\mu}{\sigma\sqrt{n}}$$
+    $$\Phi(z) = \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{z}e^{\frac{-x^2}{2}}$$
+    $$\lim_{n \to \infty} P(Z_n \leq z) = \Phi(z)$$
+    
+    \item Strong Law of Large Numbers \\ 
+    The strong law of large numbers states that a sum of n independent, identically distributed random variables with finite variance will approach the mean with probability 1 for sufficiently large values of n.
+    
+    $$P(\lim_{n \to \infty} \frac{X_1 + ... + X_n}{n} = \mu) = 1$$
+    
+\end{enumerate}
+
+\end{document}
